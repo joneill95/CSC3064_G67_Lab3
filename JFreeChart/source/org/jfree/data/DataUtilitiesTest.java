@@ -14,7 +14,7 @@ import org.jfree.data.KeyedValues;
 import org.jfree.data.Values2D;
 import junit.framework.TestCase;
 
-public class DataUtilitiesTest {
+public class DataUtilitiesTest extends DataUtilities{
 
 	private Values2D values2D;
 
