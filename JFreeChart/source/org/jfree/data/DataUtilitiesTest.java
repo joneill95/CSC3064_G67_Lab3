@@ -17,6 +17,8 @@ import junit.framework.TestCase;
 public class DataUtilitiesTest extends DataUtilities{
 
 	private Values2D values2D;
+	//private Values2D values2DNull;
+
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -37,23 +39,28 @@ public class DataUtilitiesTest extends DataUtilities{
 	@After
 	public void tearDown() {
 		values2D = null;
+		//values2DNull = null;
 	}
-
+	
 	
 	  private Values2D values2DNeg;
-	  
-	  
 	  @BeforeClass public static void setUpBeforeClass1() throws Exception { }
-	  
 	  @AfterClass public static void tearDownAfterClass1() throws Exception { }
-	  
 	  @Before public void setUp1(){ 
 		  DefaultKeyedValues2D testValues2 = new DefaultKeyedValues2D(); 
 		  values2DNeg = testValues2; 
 		  testValues2.addValue(-1,0,0); 
 		  testValues2.addValue(-4,-1,0); }
-	  
 	  @After public void tearDown1(){ values2DNeg = null; }
+	  
+	  private Values2D values2DNull;
+	  @BeforeClass public static void setUpBeforeClass2() throws Exception { }
+	  @AfterClass public static void tearDownAfterClass2() throws Exception { }
+	  @Before public void setUp2(){ 
+		  DefaultKeyedValues2D testValues3 = new DefaultKeyedValues2D(); 
+		  values2DNull = testValues3; 
+		  testValues3.addValue(null,0, 0); }
+	  @After public void tearDown2(){ values2DNull = null; }
 	 
 
 	// Tests for calculateColumnTotal
@@ -76,6 +83,10 @@ public class DataUtilitiesTest extends DataUtilities{
 	  @Test public void testCalculateColumnTotalNegative() {
 	  assertEquals("Wrong sum returned. It should be -5.0", -5.0,
 	  DataUtilities.calculateColumnTotal(values2DNeg, 0), 0.0000001d); }
+
+	  @Test public void testCalculateColumnTotalNullValues() {
+	  assertEquals("Wrong sum returned. It should be -5.0", -5.0,
+	  DataUtilities.calculateColumnTotal(values2DNull, 0), 0.0000001d); }
 	 
 
 	// Tests For CalculateRowTotal()
@@ -97,6 +108,11 @@ public class DataUtilitiesTest extends DataUtilities{
 	@Test
 	public void testCalculateRowTotalNegative() {
 	assertEquals("Wrong sum returned. It should be -1.0",  -1.0, DataUtilities.calculateRowTotal(values2DNeg, 0), 0.0000001d); 
+	}
+	
+	@Test
+	public void testCalculateRowTotalNullValues() {
+	assertEquals("Wrong sum returned. It should be -1.0",  -1.0, DataUtilities.calculateRowTotal(values2DNull, 0), 0.0000001d); 
 	}
 
 	// Tests for createNumberArray
@@ -184,7 +200,17 @@ public class DataUtilitiesTest extends DataUtilities{
 		keyvalues.addValue((Comparable) 1.0, -11.0);
 		keyvalues.addValue((Comparable) 2.0, -3.0);
 		KeyedValues object_under_test = DataUtilities.getCumulativePercentages((KeyedValues) keyvalues);
-		System.out.println(object_under_test.getValue(2));
+		assertEquals((double) object_under_test.getValue(2), 1.0, 0.000000001d);
+
+	}
+	
+	@Test
+	public void testGetCumulativePercentagesNullValues() {
+		DefaultKeyedValues keyvalues = new DefaultKeyedValues();
+		keyvalues.addValue((Comparable) 0.0, null);
+		keyvalues.addValue((Comparable) 1.0, 11.0);
+		keyvalues.addValue((Comparable) 2.0, 3.0);
+		KeyedValues object_under_test = DataUtilities.getCumulativePercentages((KeyedValues) keyvalues);
 		assertEquals((double) object_under_test.getValue(2), 1.0, 0.000000001d);
 
 	}
