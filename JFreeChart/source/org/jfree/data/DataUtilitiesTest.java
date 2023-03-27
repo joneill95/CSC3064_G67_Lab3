@@ -63,6 +63,15 @@ public class DataUtilitiesTest extends DataUtilities{
 	  @After public void tearDown2(){ values2DNull = null; }
 	 
 
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+
 	// Tests for calculateColumnTotal
 	@Test
 	public void testCalculateColumnTotalValidData() {
@@ -80,15 +89,27 @@ public class DataUtilitiesTest extends DataUtilities{
 		}
 	}
 	
-	  @Test public void testCalculateColumnTotalNegative() {
+	  @Test 
+	  public void testCalculateColumnTotalNegative() {
 	  assertEquals("Wrong sum returned. It should be -5.0", -5.0,
 	  DataUtilities.calculateColumnTotal(values2DNeg, 0), 0.0000001d); }
 
-	  @Test public void testCalculateColumnTotalNullValues() {
+	  @Test
+	  public void testCalculateColumnTotalNullValues() {
 	  assertEquals("Wrong sum returned. It should be -5.0", -5.0,
 	  DataUtilities.calculateColumnTotal(values2DNull, 0), 0.0000001d); }
 	 
 
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	// Tests For CalculateRowTotal()
 	@Test
 	public void testCalculateRowTotalValidData() {
@@ -115,6 +136,18 @@ public class DataUtilitiesTest extends DataUtilities{
 	assertEquals("Wrong sum returned. It should be -1.0",  -1.0, DataUtilities.calculateRowTotal(values2DNull, 0), 0.0000001d); 
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// Tests for createNumberArray
 	@Test
 	public void testCreateNumberArrayNull() {
@@ -142,6 +175,16 @@ public class DataUtilitiesTest extends DataUtilities{
 				DataUtilities.createNumberArray(data));
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// Tests for createNumberArray2D
 	@Test
 	public void testCreateNumberArray2DNull() {
@@ -169,6 +212,15 @@ public class DataUtilitiesTest extends DataUtilities{
 				DataUtilities.createNumberArray2D(data));
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// Tests for getCumulativePercentages
 	@Test
 	public void testGetCumulativePercentagesNull() {
