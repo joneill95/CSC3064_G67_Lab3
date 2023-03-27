@@ -36,6 +36,17 @@ public class RangeTest extends TestCase {
 				0, rangeObjectUnderTest.getCentralValue(), 0.000000001d);
 	}
 	
+	@Test
+	public void testRangeLowerGreaterThanUpper() {
+	    try {
+		    Range r1 = new Range(5, 1);
+			fail("No exception thrown. The expected outcome was: a thrown exception of type: IllegalArgumentException");
+		} catch (Exception e) {
+			assertTrue("Incorrect exception type thrown", e.getClass().equals(IllegalArgumentException.class));
+		}
+
+	}
+	
 	//Tests for getCentralValue
 	@Test
 	public void testGetCentralValue() {
@@ -362,6 +373,11 @@ public class RangeTest extends TestCase {
 		}
 		
 		
+		
+		
+		
+		
+		
 		// Shifts (Range,Double,Boolean)
 		public void testShift1Null() {
 			try {
@@ -371,5 +387,14 @@ public class RangeTest extends TestCase {
 				assertTrue("Incorrect exception type thrown", e.getClass().equals(IllegalArgumentException.class));
 			}
 		}
+		
+		
+		public void testShift() {
+			Range r1 = new Range(1, 5);
+			Range r2 = new Range (11, 15);
+			assertEquals("equals: Did not return the expected output", r2, Range.shift(r1, 10));
+			
+		}
+		
 		
 }
